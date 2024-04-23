@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col">
+    <!-- Tabla de productos -->
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha de ingreso</th>
+            <th scope="col">Registrado por</th>
+            <th scope="col">Acciones</th>
+          </tr>
+          <tr>
+            <th><input type="text" class="form-control" disabled (keyup)="onFieldChange('id', $event)"></th>
+            <th><input type="text" class="form-control" [(ngModel)]="searchName" [disabled]="searchNameDisabled" (keyup)="onFieldChange('name', $event)"></th>
+            <th><input type="text" class="form-control" disabled (keyup)="onFieldChange('quantity', $event)"></th>
+            <th><input type="text" class="form-control" [(ngModel)]="searchEntryDate" [disabled]="searchEntryDateDisabled" (keyup)="onFieldChange('entryDate', $event)"></th>
+            <th><input type="text" class="form-control" [(ngModel)]="searchRegisteredBy" [disabled]="searchRegisteredByDisabled" (keyup)="onFieldChange('registeredBy', $event)"></th>
+            <th></th> <!-- Acciones -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.entryDate | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ product.registeredBy?.name }}</td>
+            <td>
+              <button class="btn btn-warning mr-2" [routerLink]="['/product/update', product.id]">Editar</button>
+              <button class="btn btn-danger" (click)="deleteProductById(product.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

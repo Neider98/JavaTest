@@ -1,0 +1,29 @@
+<h2 class="mb-4 mt-4"> {{tittle}} </h2>
+<hr>
+
+<form class="row g-3 mt-4" (ngSubmit)="addProduct()" enctype="multipart/form-data">
+    <div class="row">
+            <input type="hidden" [(ngModel)]="product.id" name="id">
+
+        <div class="col-md-6">
+            <label for="name" class="form-label">Nombre del producto</label>
+            <input type="text" class="form-control" id="name" placeholder="Nombre" [(ngModel)]="product.name" name="name" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="quantity" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="quantity" placeholder="Cantidad" [(ngModel)]="product.quantity" name="quantity" required>
+        </div>
+
+        <div class="col-md-6">
+            <label for="entryDate" class="form-label">Fecha de entrada</label>
+            <input type="date" class="form-control" id="entryDate" placeholder="Fecha de entrada" [(ngModel)]="product.entryDate" name="entryDate" required>
+        </div>
+    </div>
+    <div class="d-grid gap-2 col-8 mx-auto mt-4">
+        <button type="submit" class="btn btn-success">
+            Guardar
+        </button>
+        <button class="btn btn-primary mr-2" [routerLink]="['']">Volver</button>
+    </div>
+</form>

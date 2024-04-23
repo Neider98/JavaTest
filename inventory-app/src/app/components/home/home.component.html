@@ -1,0 +1,18 @@
+
+
+<div class="row">
+    <div class="col-5">
+        <app-user-list (isSelectedUserChange)="onUserSelected($event)"></app-user-list>
+    </div>
+</div>
+<div *ngIf="selectedUser">
+  <div class="container mt-4">
+    <div class="row mb-3">
+      <div class="col">
+        <a class="btn btn-primary" routerLink="/product/addproduct">Crear Producto</a>
+      </div>
+    </div>
+    <app-product-list></app-product-list>
+  </div>
+</div>
+  

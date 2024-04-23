@@ -1,0 +1,45 @@
+-- Creación de la tabla "positions"
+CREATE TABLE positions (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+-- Creación de la tabla "users"
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    age INTEGER NOT NULL,
+    position_id INTEGER REFERENCES positions(id) NOT NULL,
+    entry_date DATE NOT NULL
+);
+
+-- Creación de la tabla "products"
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) UNIQUE NOT NULL,
+    quantity INTEGER NOT NULL,
+    entry_date DATE NOT NULL,
+    registered_by_user INTEGER REFERENCES users(id) NOT NULL,
+    last_modified_by_user INTEGER REFERENCES users(id),
+    last_modified_date TIMESTAMP,
+    FOREIGN KEY (registered_by_user) REFERENCES users(id),
+    FOREIGN KEY (last_modified_by_user) REFERENCES users(id)
+);
+
+-- Insercion de los cargos laborales
+
+INSERT INTO positions (name) VALUES
+('Asesor de ventas'),
+('Administrador'),
+('Soporte');
+
+-- Insercion de los usuarios
+
+INSERT INTO users (name, age, position_id, entry_date) 
+VALUES ('Andres Rojas', 30, (SELECT id FROM positions WHERE name = 'Asesor de ventas'), CURRENT_DATE);
+
+INSERT INTO users (name, age, position_id, entry_date) 
+VALUES ('Karen Padilla', 35, (SELECT id FROM positions WHERE name = 'Administrador'), CURRENT_DATE);
+
+INSERT INTO users (name, age, position_id, entry_date) 
+VALUES ('Juan Rodriguez', 25, (SELECT id FROM positions WHERE name = 'Soporte'), CURRENT_DATE);

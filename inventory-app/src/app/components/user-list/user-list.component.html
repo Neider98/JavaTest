@@ -1,0 +1,11 @@
+<form>
+    <br>
+    <br>
+    <div class="form-group">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"[(ngModel)]="selectedUser" name="selectedUser" (change)="onSelectUser()">
+        <option value="" disabled selected>Escoge un usuario</option> <!-- Opción por defecto -->
+        <option *ngFor="let user of users" [ngValue]="user">{{ user.name }} - {{ user.position.name }}</option>
+      </select> 
+    </div>   
+</form>
+  
